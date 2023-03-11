@@ -40,7 +40,7 @@ const Form = ({requestPets, animal, setAnimal, location, setLocation, ANIMALS, s
                 type="text"
                 id='breed'
                 disabled={breeds.length === 0}
-                value={breed}
+                value={breeds[0]}
                 onChange={(e) => setBreed(e.target.value)}
                 placeholder="Location..."
             >
