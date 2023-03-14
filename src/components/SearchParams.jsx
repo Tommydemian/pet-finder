@@ -22,20 +22,9 @@ const SearchParams = () => {
     const [pets, setPets] = useState([])
 
     const { data: petsData, isLoading:isPetsDataLoading, refetch } = useFetch('animals', {animal, location, breed}, `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}` )
-    console.log(petsData?.pets)
 
     const { breedList: breeds, status, loading } = useBreedList(animal)
 
-    // useEffect(() => {
-    //     requestPets();
-    // }, [])
-
-    // function requestPets() {
-
-    //     axios.get(`http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`)
-    //         .then(res => res.data).then(data => setPets(data.pets))
-    //         .catch(err => console.error(err));
-    // }
     if (isPetsDataLoading) {
         return (
             <div>Loading data...</div>

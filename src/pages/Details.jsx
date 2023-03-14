@@ -4,8 +4,10 @@ import { useFetch } from '../hooks/useFetch';
 
 import { BeatLoader } from 'react-spinners';
 
+import Carousel from '../components/Carousel';
+import ErrorBoundary from '../components/ErrorBoundary';
 
-const Details = () => {
+export const Details = () => {
   const { id } = useParams()
   const {data, isLoading, isError, refetch} = useFetch('pets', id, `http://pets-v2.dev-apis.com/pets?id=${id}`)
   
@@ -36,6 +38,7 @@ const Details = () => {
 
   return (
     <div className='details'>
+      <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
         <h2>{pet.animal} - {pet.breed} - {pet.city}, {pet.state}
@@ -47,4 +50,12 @@ const Details = () => {
   )
 }
 
-export default Details
+const DetailsErrorBoundary = (props) => {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  )
+};
+
+export default DetailsErrorBoundary;
