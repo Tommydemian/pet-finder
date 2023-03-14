@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch';
+
 import { BeatLoader } from 'react-spinners';
 
 
 const Details = () => {
   const { id } = useParams()
-  const {data, isLoading, isError, refetch} = useFetch('details', `http://pets-v2.dev-apis.com/pets?id=${id}`)
+  const {data, isLoading, isError, refetch} = useFetch('pets', id, `http://pets-v2.dev-apis.com/pets?id=${id}`)
   
   useEffect(() => {
     console.log(data?.pets[0])
   }, [data])
   
-  useEffect(() => {
-    refetch()
-  },[])
-
   if (isLoading) {
     return (
       <div className='loading-pane'>

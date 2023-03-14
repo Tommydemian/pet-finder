@@ -1,17 +1,22 @@
 import React from 'react'
 
-const Form = ({requestPets, animal, setAnimal, location, setLocation, ANIMALS, setBreed, breeds }) => {
+const Form = ({animal, setAnimal, ANIMALS, setBreed, breeds, setRequestParams }) => {
   return (
     <form onSubmit={(e) => {
         e.preventDefault()
-        requestPets()
+        const formData = new FormData(e.target)
+        const obj = {
+            animal: formData.get('animal') ?? '',
+            breed: formData.get('breed') ?? '',
+            location: formData.get('location') ?? '',
+        };
+        setRequestParams(obj)
     } } >
         <label htmlFor="location">
             <input
                 type="text"
+                name='location'
                 id='location'
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
                 placeholder="Location..."
             />
         </label>
@@ -40,8 +45,7 @@ const Form = ({requestPets, animal, setAnimal, location, setLocation, ANIMALS, s
                 type="text"
                 id='breed'
                 disabled={breeds.length === 0}
-                value={breeds[0]}
-                onChange={(e) => setBreed(e.target.value)}
+                name="breed"
                 placeholder="Location..."
             >
                 <option></option>

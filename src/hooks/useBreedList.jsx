@@ -1,5 +1,6 @@
 import  Axios  from 'axios'
 import React, { useState, useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 const localCache = {}
 
@@ -25,7 +26,6 @@ export const useBreedList = (animal) => {
 
             Axios.get(`http://pets-v2.dev-apis.com/breeds?animal=${animal}`)
             .then(res => res.data).then(data => {
-                console.log(data);
                 localCache[animal] = data.breeds || []
                 setBreedList(localCache[animal])
                 setStatus('loaded');
