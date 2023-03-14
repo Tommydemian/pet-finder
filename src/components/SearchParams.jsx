@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { BeatLoader } from 'react-spinners';
+
 
 import { useBreedList } from '../hooks/useBreedList';
 
@@ -31,8 +31,6 @@ const SearchParams = () => {
     return (
 
         <div className='search-params'>
-            <BeatLoader color="#123abc" loading={true} />
-
             <Form
                 requestPets={requestPets}
                 ANIMALS={ANIMALS}
