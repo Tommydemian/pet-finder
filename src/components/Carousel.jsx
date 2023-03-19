@@ -9,6 +9,12 @@ class Carousel extends Component {
         images: [`http://pets-v2.dev-apis.com/pets/none.jpg`] 
     } // This is what the name says => default props. / Horrrible way to declare default props but that's how you do it on class Components.
 
+    handleIndexClick = (e) => {
+        this.setState({
+            active: +e.target.dataset.index
+        })
+    }
+
     render(){
         const { active } = this.state; // use [this] => key here.
         const { images } = this.props;
@@ -20,6 +26,8 @@ class Carousel extends Component {
                 <div className='carousel-smaller'>
                     {images.map((photo, index) => (
                         <img 
+                          onClick={this.handleIndexClick}
+                          data-index={index}
                           key={photo}
                           src={photo}
                           alt='animal thumbnail'

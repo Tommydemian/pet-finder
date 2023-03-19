@@ -4,3 +4,8 @@
 
 # Special case Rect Tools: 
 1. Error Boundaries => only can be done in class Components.
+
+2. clean-up function cases: 
+- Remove something from the DOM 
+- Remove Event listeners
+- something related to timer
